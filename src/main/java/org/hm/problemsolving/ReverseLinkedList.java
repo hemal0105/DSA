@@ -22,7 +22,7 @@ public class ReverseLinkedList {
         ListNode next;
 
         while(curr != null) {
-            next = curr.getNext();
+            next = curr.next;
             curr.setNext(prev);
             prev = curr;
             curr = next;
@@ -32,11 +32,11 @@ public class ReverseLinkedList {
     }
 
     public static ListNode reverseListRec(ListNode head) {
-        if (head == null || head.getNext() == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        ListNode p = reverseListRec(head.getNext());
-        head.getNext().setNext(head); // head.next.next = head;
+        ListNode p = reverseListRec(head.next);
+        head.next.next = head;
         head.setNext(null);
         return p; // new head after reversing
     }

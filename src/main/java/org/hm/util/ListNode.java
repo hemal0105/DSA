@@ -1,20 +1,12 @@
 package org.hm.util;
 
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
     public ListNode(int x) {
         val = x;
         next = null;
-    }
-
-    public int getVal() {
-        return this.val;
-    }
-
-    public ListNode getNext() {
-        return this.next;
     }
 
     public ListNode setNext(ListNode listNode) {

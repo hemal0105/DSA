@@ -12,21 +12,21 @@ public class MiddleOfLinkedList {
         ListNode list1 = new ListNode(1);
         list1.setNext(new ListNode(2)).setNext(new ListNode(3)).setNext(new ListNode(4))
                 .setNext(new ListNode(5));
-        System.out.println(middleNode(list1).getVal());
+        System.out.println(middleNode(list1).val);
 
         ListNode list2 = new ListNode(1);
         list2.setNext(new ListNode(2)).setNext(new ListNode(3)).setNext(new ListNode(4))
                 .setNext(new ListNode(5)).setNext(new ListNode(6));
-        System.out.println(middleNode(list2).getVal());
+        System.out.println(middleNode(list2).val);
     }
 
     public static ListNode middleNode(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
 
-        while (fast != null && fast.getNext() != null) {
-            fast = fast.getNext().getNext();
-            slow = slow.getNext();
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
 
         return slow;
