@@ -4,6 +4,10 @@ import org.hm.util.ListNode;
 
 import static org.hm.util.ListNode.printList;
 
+/**
+ * Given the head of a linked list and an integer val, remove all the nodes of the linked
+ * list that has Node.val == val, and return the new head.
+ */
 public class RemoveLinkedListElement {
     public static void main(String[] args) {
         ListNode list = new ListNode(1);

@@ -2,6 +2,9 @@ package org.hm.problemsolving;
 
 import org.hm.util.ListNode;
 
+/**
+ * Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+ */
 public class PalindromeLinkedList {
     public static void main(String[] args) {
         ListNode list = new ListNode(1);
