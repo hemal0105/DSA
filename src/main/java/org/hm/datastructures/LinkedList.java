@@ -18,7 +18,7 @@ public class LinkedList {
         System.out.print(head.data + " ");
     }
 
-    private void reverse() {
+    public void reverse() {
         Node prev = null;
         Node curr = this.head;
         while (curr != null) {
@@ -30,14 +30,14 @@ public class LinkedList {
         this.head = prev;
     }
 
-    private void insertAtBeginning(int data) {
+    public void insertAtBeginning(int data) {
         Node temp = new Node();
         temp.data = data;
         temp.next = this.head;
         this.head = temp;
     }
 
-    private void insert(int data, int pos) {
+    public void insert(int data, int pos) {
         Node newNode = new Node();
         newNode.data = data;
         if (pos == 1) {
@@ -54,7 +54,7 @@ public class LinkedList {
         temp.next = newNode;
     }
 
-    private void delete(int pos) {
+    public void delete(int pos) {
         if (pos == 1) {
             this.head = this.head.next;
             return;
@@ -66,11 +66,11 @@ public class LinkedList {
         temp.next = temp.next.next;
     }
 
-    private Node getHead() {
+    public Node getHead() {
         return this.head;
     }
 
-    private void setHead(Node node) {
+    public void setHead(Node node) {
         this.head = node;
     }
 
