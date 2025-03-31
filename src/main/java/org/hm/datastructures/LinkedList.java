@@ -1,32 +1,7 @@
 package org.hm.datastructures;
 
 public class LinkedList {
-
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        System.out.println("Create list with insert at beginning");
-        list.createWithInsertAtBeginning();
-
-        System.out.println("Create list with insert at a given position");
-        list.createWithInsertAtPos();
-
-        System.out.println("Delete node");
-        list.deleteNode(list.createWithInsertAtBeginning());
-
-        System.out.println("Iterative reverse");
-        Node head1 = list.reverse(list.createWithInsertAtBeginning());
-        list.print(head1);
-
-        System.out.println("Print in reverse with recursion");
-        Node head2 = list.createWithInsertAtBeginning();
-        list.recRevPrint(head2);
-        System.out.println();
-
-        System.out.println("Recursive reverse");
-        Node head3 = list.createWithInsertAtBeginning();
-        head3 = list.recReverse(head3);
-        list.print(head3);
-    }
+    private Node head = null;
 
     private Node recReverse(Node head) {
         if (head.next == null) return head;
@@ -43,100 +18,130 @@ public class LinkedList {
         System.out.print(head.data + " ");
     }
 
-    private Node reverse(Node head) {
+    private void reverse() {
         Node prev = null;
-        Node curr = head;
-        while(curr != null) {
+        Node curr = this.head;
+        while (curr != null) {
             Node next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
         }
-        return prev;
+        this.head = prev;
     }
 
-    private void deleteNode(Node head) {
-        head = delete(head, 1);
-        print(head);
-        head = delete(head, 2);
-        print(head);
-        head = delete(head, 3);
-        print(head);
-    }
-
-
-    private Node createWithInsertAtBeginning() {
-        Node head = null;
-        head = insertAtBeginning(head, 2);
-        head = insertAtBeginning(head, 5);
-        head = insertAtBeginning(head, 8);
-        head = insertAtBeginning(head, 1);
-        head = insertAtBeginning(head, 10);
-
-        print(head);
-        System.out.println();
-        return head;
-    }
-
-    private void createWithInsertAtPos() {
-        Node head = null;
-        head = insert(head, 2, 1);
-        head = insert(head, 3, 2);
-        head = insert(head, 4, 1);
-        head = insert(head, 5, 2);
-
-        print(head);
-        System.out.println();
-    }
-
-    private Node insertAtBeginning(Node head, int data) {
+    private void insertAtBeginning(int data) {
         Node temp = new Node();
         temp.data = data;
-        temp.next = head;
-        head = temp;
-
-        return head;
+        temp.next = this.head;
+        this.head = temp;
     }
 
-    private Node insert(Node head, int data, int pos) {
+    private void insert(int data, int pos) {
         Node newNode = new Node();
         newNode.data = data;
         if (pos == 1) {
-            newNode.next = head;
-            head = newNode;
-            return head;
+            newNode.next = this.head;
+            this.head = newNode;
+            return;
         }
 
-        Node temp = head;
-        for(int i = 0; i < pos-2; i++) {
+        Node temp = this.head;
+        for (int i = 0; i < pos - 2; i++) {
             temp = temp.next;
         }
         newNode.next = temp.next;
         temp.next = newNode;
-
-        return head;
     }
 
-    private Node delete(Node head, int pos) {
+    private void delete(int pos) {
         if (pos == 1) {
-            head = head.next;
-            return head;
+            this.head = this.head.next;
+            return;
         }
-        Node temp = head;
-        for(int i = 0; i < pos-2; i++) {
+        Node temp = this.head;
+        for (int i = 0; i < pos - 2; i++) {
             temp = temp.next;
         }
         temp.next = temp.next.next;
-        return head;
     }
 
-    private void print(Node head) {
-        Node temp = head;
+    private Node getHead() {
+        return this.head;
+    }
+
+    private void setHead(Node node) {
+        this.head = node;
+    }
+
+    private void print() {
+        Node temp = this.head;
         System.out.print("List: ");
-        while(temp != null) {
+        while (temp != null) {
             System.out.print(" " + temp.data);
             temp = temp.next;
         }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Create list with insert at beginning");
+        createWithInsertAtBeginning();
+
+        System.out.println("Create list with insert at a given position");
+        createWithInsertAtPos();
+
+        System.out.println("Delete node");
+        deleteNodes(createWithInsertAtBeginning());
+
+        System.out.println("Iterative reverse");
+        LinkedList list1 = createWithInsertAtBeginning();
+        list1.reverse();
+        list1.print();
+
+        System.out.println("Print in reverse with recursion");
+        LinkedList list2 = createWithInsertAtBeginning();
+        list2.recRevPrint(list2.getHead());
+        System.out.println();
+
+        System.out.println("Recursive reverse");
+        LinkedList list3 = createWithInsertAtBeginning();
+        Node newHead = list3.recReverse(list3.getHead());
+        list3.setHead(newHead);
+        list3.print();
+    }
+
+    private static void deleteNodes(LinkedList list) {
+        list.delete(1);
+        list.print();
+        list.delete(2);
+        list.print();
+        list.delete(3);
+        list.print();
+    }
+
+
+    private static LinkedList createWithInsertAtBeginning() {
+        LinkedList list = new LinkedList();
+        list.insertAtBeginning(2);
+        list.insertAtBeginning(5);
+        list.insertAtBeginning(8);
+        list.insertAtBeginning(1);
+        list.insertAtBeginning(10);
+
+        list.print();
+        System.out.println();
+        return list;
+    }
+
+    private static void createWithInsertAtPos() {
+        LinkedList list = new LinkedList();
+        list.insert(2, 1);
+        list.insert(3, 2);
+        list.insert(4, 1);
+        list.insert(5, 2);
+
+        list.print();
         System.out.println();
     }
 }
