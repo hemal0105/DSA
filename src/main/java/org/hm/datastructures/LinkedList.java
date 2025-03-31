@@ -121,7 +121,7 @@ public class LinkedList {
     }
 
 
-    private static LinkedList createWithInsertAtBeginning() {
+    public static LinkedList createWithInsertAtBeginning() {
         LinkedList list = new LinkedList();
         list.insertAtBeginning(2);
         list.insertAtBeginning(5);
