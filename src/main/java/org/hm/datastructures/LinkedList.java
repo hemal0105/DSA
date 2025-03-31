@@ -74,7 +74,7 @@ public class LinkedList {
         this.head = node;
     }
 
-    private void print() {
+    public void print() {
         Node temp = this.head;
         System.out.print("List: ");
         while (temp != null) {
@@ -149,4 +149,8 @@ public class LinkedList {
 class Node {
     int data;
     Node next;
+
+    public int getData() {
+        return this.data;
+    }
 }
