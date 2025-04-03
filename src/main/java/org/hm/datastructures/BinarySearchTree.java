@@ -14,6 +14,13 @@ public class BinarySearchTree {
         return root;
     }
 
+    private boolean search(BstNode root, int data) {
+        if(root == null) return false;
+        else if(root.data == data) return true;
+        else if (data <= root.data) return search(root.left, data);
+        else return search(root.right, data);
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -23,7 +30,9 @@ public class BinarySearchTree {
         root = tree.insert(root, 20);
         root = tree.insert(root, 25);
         root = tree.insert(root, 8);
-        tree.insert(root, 12);
+        root = tree.insert(root, 12);
+        System.out.println("Search 8: " + tree.search(root, 8));
+        System.out.println("Search 18: " + tree.search(root, 18));
     }
 }
 
