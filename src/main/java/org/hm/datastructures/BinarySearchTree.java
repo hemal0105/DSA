@@ -1,5 +1,8 @@
 package org.hm.datastructures;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
 
     private BstNode insert(BstNode root, int data) {
@@ -28,6 +31,20 @@ public class BinarySearchTree {
         return Integer.max(findHeight(root.left), findHeight(root.right)) + 1;
     }
 
+    private void levelOrderTraversal(BstNode root) {
+        System.out.print("Level Order Traversal: ");
+        Queue<BstNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()) {
+            BstNode node = queue.peek();
+            System.out.print(node.data + " ");
+            if(node.left != null) queue.add(node.left);
+            if(node.right != null) queue.add(node.right);
+            queue.poll();
+        }
+        System.out.println();
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -42,6 +59,7 @@ public class BinarySearchTree {
         System.out.println("Search 18: " + tree.search(root, 18));
         int height = tree.findHeight(root);
         System.out.println("Tree Height: " + height);
+        tree.levelOrderTraversal(root);
     }
 }
 
