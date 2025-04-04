@@ -21,6 +21,13 @@ public class BinarySearchTree {
         else return search(root.right, data);
     }
 
+    private int findHeight(BstNode root) {
+        if (root == null) {
+            return -1;
+        }
+        return Integer.max(findHeight(root.left), findHeight(root.right)) + 1;
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -33,6 +40,8 @@ public class BinarySearchTree {
         root = tree.insert(root, 12);
         System.out.println("Search 8: " + tree.search(root, 8));
         System.out.println("Search 18: " + tree.search(root, 18));
+        int height = tree.findHeight(root);
+        System.out.println("Tree Height: " + height);
     }
 }
 
