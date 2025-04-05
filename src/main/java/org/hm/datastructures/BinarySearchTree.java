@@ -45,6 +45,27 @@ public class BinarySearchTree {
         System.out.println();
     }
 
+    private void preOrderDfs(BstNode root) {
+        if (root == null) return;
+        System.out.print(root.data + " ");
+        preOrderDfs(root.left);
+        preOrderDfs(root.right);
+    }
+
+    private void inOrderDfs(BstNode root) {
+        if (root == null) return;
+        inOrderDfs(root.left);
+        System.out.print(root.data + " ");
+        inOrderDfs(root.right);
+    }
+
+    private void postOrderDfs(BstNode root) {
+        if (root == null) return;
+        postOrderDfs(root.left);
+        postOrderDfs(root.right);
+        System.out.print(root.data + " ");
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -60,6 +81,18 @@ public class BinarySearchTree {
         int height = tree.findHeight(root);
         System.out.println("Tree Height: " + height);
         tree.levelOrderTraversal(root);
+
+        System.out.print("preOrderDfs: ");
+        tree.preOrderDfs(root);
+        System.out.println();
+
+        System.out.print("inOrderDfs: ");
+        tree.inOrderDfs(root);
+        System.out.println();
+
+        System.out.print("postOrderDfs: ");
+        tree.postOrderDfs(root);
+        System.out.println();
     }
 }
 
