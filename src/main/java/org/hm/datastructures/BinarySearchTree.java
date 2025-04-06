@@ -24,6 +24,20 @@ public class BinarySearchTree {
         else return search(root.right, data);
     }
 
+    private int findMinItr(BstNode root) {
+        if (root == null) return -1;
+        while(root.left != null) root = root.left;
+        return root.data;
+    }
+
+    private int findMinRec(BstNode root) {
+        if (root == null) return -1;
+        if (root.left == null) return root.data;
+        return findMinRec(root.left);
+    }
+
+
+
     private int findHeight(BstNode root) {
         if (root == null) {
             return -1;
@@ -78,8 +92,13 @@ public class BinarySearchTree {
         root = tree.insert(root, 12);
         System.out.println("Search 8: " + tree.search(root, 8));
         System.out.println("Search 18: " + tree.search(root, 18));
+
+        System.out.println("Find Min Iterative: " + tree.findMinItr(root));
+        System.out.println("Find Min Recursive: " + tree.findMinRec(root));
+
         int height = tree.findHeight(root);
         System.out.println("Tree Height: " + height);
+
         tree.levelOrderTraversal(root);
 
         System.out.print("preOrderDfs: ");
