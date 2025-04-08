@@ -96,6 +96,26 @@ public class BinarySearchTree {
         return isBstUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
+    private BstNode delete(BstNode root, int data) {
+        if (root == null) return root;
+        else if (data < root.data) root.left = delete(root.left, data);
+        else if (data > root.data) root.right = delete(root.right, data);
+        else {
+            if (root.left == null && root.right == null) {
+                root = null;
+            } else if (root.left == null) {
+                root = root.right;
+            } else if (root.right == null) {
+                root = root.left;
+            } else {
+                int minFromRight = findMinItr(root.right);
+                root.data = minFromRight;
+                root.right = delete(root.right, minFromRight);
+            }
+        }
+        return root;
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -130,6 +150,8 @@ public class BinarySearchTree {
         System.out.println();
 
         System.out.println("Is BST: " + tree.isBst(root));
+
+        tree.levelOrderTraversal(tree.delete(root, 15));
     }
 }
 
