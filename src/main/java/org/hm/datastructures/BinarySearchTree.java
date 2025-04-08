@@ -80,6 +80,22 @@ public class BinarySearchTree {
         System.out.print(root.data + " ");
     }
 
+    private boolean isBstUtil(BstNode root, int minValue, int maxValue) {
+        if (root == null) return true;
+        if ((root.data > minValue)
+                && (root.data < maxValue)
+                && isBstUtil(root.left, minValue, root.data)
+                && isBstUtil(root.right, root.data, maxValue)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isBst(BstNode root) {
+        return isBstUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -112,6 +128,8 @@ public class BinarySearchTree {
         System.out.print("postOrderDfs: ");
         tree.postOrderDfs(root);
         System.out.println();
+
+        System.out.println("Is BST: " + tree.isBst(root));
     }
 }
 
