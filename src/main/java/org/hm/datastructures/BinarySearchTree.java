@@ -30,9 +30,9 @@ public class BinarySearchTree {
         return root.data;
     }
 
-    private int findMinRec(BstNode root) {
-        if (root == null) return -1;
-        if (root.left == null) return root.data;
+    private BstNode findMinRec(BstNode root) {
+        if (root == null) return null;
+        if (root.left == null) return root;
         return findMinRec(root.left);
     }
 
@@ -116,6 +116,32 @@ public class BinarySearchTree {
         return root;
     }
 
+    private BstNode find(BstNode root, int data) {
+        if (root == null) return null;
+        else if (data < root.data) return find(root.left, data);
+        else if (data > root.data) return find(root.right, data);
+        else return root;
+    }
+
+    private BstNode inOrderSuccessor(BstNode root, int data) {
+        BstNode current = find(root, data);
+        if (current == null) return null;
+        if (current.right != null) return findMinRec(root);
+        else {
+            BstNode successor = null;
+            BstNode ancestor = root;
+            while (ancestor != current) {
+                if (current.data < ancestor.data) {
+                    successor = ancestor;
+                    ancestor = ancestor.left;
+                } else {
+                    ancestor = ancestor.right;
+                }
+            }
+            return successor;
+        }
+    }
+
 
     public static void main(String[] args) {
         BstNode root = null;
@@ -152,6 +178,9 @@ public class BinarySearchTree {
         System.out.println("Is BST: " + tree.isBst(root));
 
         tree.levelOrderTraversal(tree.delete(root, 15));
+
+        BstNode successor = tree.inOrderSuccessor(root, 8);
+        System.out.println("InOrder Successor: " + (successor != null ? successor.data : "Not Found"));
     }
 }
 
