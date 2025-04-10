@@ -123,6 +123,20 @@ public class BinarySearchTree {
         else return root;
     }
 
+    /**
+     * Example tree:
+     *            15
+     *          /    \
+     *       10       20
+     *      / \      /  \
+     *     8   12   17  25
+     *    /   /    /     \
+     *   6   11   16     27
+     *
+     *   Successor of 10 is 11
+     *   Successor of 8 is 10
+     *   Successor of 12 is 15
+     */
     private BstNode inOrderSuccessor(BstNode root, int data) {
         BstNode current = find(root, data);
         if (current == null) return null;
