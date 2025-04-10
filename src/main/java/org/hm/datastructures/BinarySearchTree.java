@@ -126,13 +126,14 @@ public class BinarySearchTree {
     private BstNode inOrderSuccessor(BstNode root, int data) {
         BstNode current = find(root, data);
         if (current == null) return null;
+        // Case1: Node has right subtree
         if (current.right != null) return findMinRec(root);
-        else {
+        else {  // Case2: No right subtree
             BstNode successor = null;
             BstNode ancestor = root;
             while (ancestor != current) {
                 if (current.data < ancestor.data) {
-                    successor = ancestor;
+                    successor = ancestor; // deepest node for which current node is in left
                     ancestor = ancestor.left;
                 } else {
                     ancestor = ancestor.right;
