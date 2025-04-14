@@ -132,7 +132,6 @@ public class BinarySearchTree {
      *     8   12   17  25
      *    /   /    /     \
      *   6   11   16     27
-     *
      *   Successor of 10 is 11
      *   Successor of 8 is 10
      *   Successor of 12 is 15
@@ -171,12 +170,13 @@ public class BinarySearchTree {
         System.out.println("Search 18: " + tree.search(root, 18));
 
         System.out.println("Find Min Iterative: " + tree.findMinItr(root));
-        System.out.println("Find Min Recursive: " + tree.findMinRec(root));
+        System.out.println("Find Min Recursive: " + tree.findMinRec(root).data);
 
         int height = tree.findHeight(root);
         System.out.println("Tree Height: " + height);
 
         tree.levelOrderTraversal(root);
+        System.out.println();
 
         System.out.print("preOrderDfs: ");
         tree.preOrderDfs(root);
@@ -188,11 +188,12 @@ public class BinarySearchTree {
 
         System.out.print("postOrderDfs: ");
         tree.postOrderDfs(root);
-        System.out.println();
+        System.out.println("\n");
 
         System.out.println("Is BST: " + tree.isBst(root));
 
         tree.levelOrderTraversal(tree.delete(root, 15));
+        System.out.println();
 
         BstNode successor = tree.inOrderSuccessor(root, 8);
         System.out.println("InOrder Successor: " + (successor != null ? successor.data : "Not Found"));
