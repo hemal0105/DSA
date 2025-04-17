@@ -22,6 +22,7 @@ public class Factors {
         return res;
     }
 
+    // O (Sqrt n)
     private static Set<Integer> factorsImproved(int n) {
         Set<Integer> res = new TreeSet<>();
 
