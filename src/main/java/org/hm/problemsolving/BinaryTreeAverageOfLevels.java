@@ -17,7 +17,7 @@ import java.util.Queue;
  * Hence return [3, 14.5, 11].
  */
 public class BinaryTreeAverageOfLevels {
-    private static List<Double> averageOfLevels(TreeNode root) {
+    private static List<Double> averageOfLevelsBfs(TreeNode root) {
         List<Double> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
@@ -38,6 +38,30 @@ public class BinaryTreeAverageOfLevels {
             result.add((double) sum / count);
         }
         return result;
+    }
+
+    private static List<Double> averageOfLevelsDfs(TreeNode root) {
+        List<Double> result = new ArrayList<>();
+        List<Integer> count = new ArrayList<>();
+        addSumAndCount(root, 0, result, count);
+
+        for (int i = 0; i < result.size(); i++) {
+            result.set(i, result.get(i) / count.get(i));
+        }
+        return result;
+    }
+
+    private static void addSumAndCount(TreeNode root, int level, List<Double> sum, List<Integer> count) {
+        if (root == null) return;
+        if (level < sum.size()) {
+            sum.set(level, sum.get(level) + root.val);
+            count.set(level, count.get(level) + 1);
+        } else {
+            sum.add(root.val * 1.0);
+            count.add(1);
+        }
+        addSumAndCount(root.left, level + 1, sum, count);
+        addSumAndCount(root.right, level + 1, sum, count);
     }
 
     private static TreeNode createTree(Integer[] arr) {
@@ -68,13 +92,16 @@ public class BinaryTreeAverageOfLevels {
 
     public static void main(String[] args) {
         Integer[] arr1 = {3, 9, 20, null, null, 15, 7};
-        System.out.println(averageOfLevels(createTree(arr1)));
+        System.out.println(averageOfLevelsBfs(createTree(arr1)));
+        System.out.println(averageOfLevelsDfs(createTree(arr1)));
 
         Integer[] arr2 = {3, 9, 20, 15, 7};
-        System.out.println(averageOfLevels(createTree(arr2)));
+        System.out.println(averageOfLevelsBfs(createTree(arr2)));
+        System.out.println(averageOfLevelsDfs(createTree(arr2)));
 
         Integer[] arr3 = {0, -1};
-        System.out.println(averageOfLevels(createTree(arr3)));
+        System.out.println(averageOfLevelsBfs(createTree(arr3)));
+        System.out.println(averageOfLevelsDfs(createTree(arr3)));
     }
 }
 
