@@ -1,5 +1,7 @@
 package org.hm.problemsolving;
 
+import org.hm.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,7 +66,7 @@ public class BinaryTreeAverageOfLevels {
         addSumAndCount(root.right, level + 1, sum, count);
     }
 
-    private static TreeNode createTree(Integer[] arr) {
+    public static TreeNode createTree(Integer[] arr) {
         TreeNode root = new TreeNode(arr[0]);
         if (arr.length == 2) {
             root.left = new TreeNode(arr[1]);
@@ -105,12 +107,4 @@ public class BinaryTreeAverageOfLevels {
     }
 }
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    TreeNode(int val) {
-        this.val = val;
-    }
-}
