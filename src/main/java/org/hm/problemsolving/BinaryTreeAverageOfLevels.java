@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- *           3
- *        /     \
- *       9       20
- *     /   \    /  \
- *   null null 15   7
+ * 3
+ * /     \
+ * 9       20
+ * /   \    /  \
+ * null null 15   7
  * Input: root = [3,9,20,null,null,15,7]
  * Output: [3.00000,14.50000,11.00000]
  * Explanation: The average value of nodes on level 0 is 3, on level 1 is 14.5, and on level 2 is 11.
@@ -67,6 +67,8 @@ public class BinaryTreeAverageOfLevels {
     }
 
     public static TreeNode createTree(Integer[] arr) {
+        if (arr.length == 0) return null;
+
         TreeNode root = new TreeNode(arr[0]);
         if (arr.length == 2) {
             root.left = new TreeNode(arr[1]);
