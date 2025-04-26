@@ -81,7 +81,7 @@ public class BinaryTreeAverageOfLevels {
         while (i < arr.length) {
             TreeNode temp = queue.remove();
             Integer leftVal = arr[i++];
-            Integer rightVal = arr[i++];
+            Integer rightVal = i < arr.length ? arr[i++] : null;
             if (leftVal != null) {
                 temp.left = new TreeNode(leftVal);
                 queue.add(temp.left);
