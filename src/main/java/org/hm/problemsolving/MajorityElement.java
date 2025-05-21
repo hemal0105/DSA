@@ -73,17 +73,38 @@ public class MajorityElement {
         return count;
     }
 
+    private static int majorityElement5(int[] nums) {
+        int count = 0;
+        int candidate = -1;
+
+        for (int num: nums) {
+            if (count == 0) candidate = num;
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+
     public static void main(String[] args) {
         int[] nums1 = {3, 2, 3};
         System.out.println(majorityElement1(nums1));
         System.out.println(majorityElement2(nums1));
         System.out.println(majorityElement3(nums1));
         System.out.println(majorityElement4(nums1));
+        System.out.println(majorityElement5(nums1));
 
         int[] nums2 = {2, 2, 1, 1, 1, 2, 2};
         System.out.println(majorityElement1(nums2));
         System.out.println(majorityElement2(nums2));
         System.out.println(majorityElement3(nums2));
         System.out.println(majorityElement4(nums2));
+        System.out.println(majorityElement5(nums2));
+
+
+        int[] nums3 = {7, 7, 5, 7, 5, 1 , 5, 7 , 5, 5, 7, 7 , 7, 7, 7, 7};
+        System.out.println(majorityElement5(nums3));
+
+        int[] nums4 = {7, 7, 5, 7, 5, 1 , 5, 7 , 5, 5, 7, 7 , 5, 5, 5, 5};
+        System.out.println(majorityElement5(nums4));
     }
 }
