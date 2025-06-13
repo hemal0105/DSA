@@ -1,5 +1,10 @@
 package org.hm.problemsolving;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class IsSubSequence {
     private String source;
     private String target;
@@ -40,6 +45,38 @@ public class IsSubSequence {
         return srcIdx == sourceLen;
     }
 
+    private boolean isSubsequenceWithMap(String source, String target) {
+        Map<Character, List<Integer>> targetIndicesMap = new HashMap<>();
+        for (int i = 0; i < target.length(); i++) {
+            if (targetIndicesMap.containsKey(target.charAt(i))) {
+                targetIndicesMap.get(target.charAt(i)).add(i);
+            } else {
+                List<Integer> indices = new ArrayList<>();
+                indices.add(i);
+                targetIndicesMap.put(target.charAt(i), indices);
+            }
+        }
+
+        int matchIndex = -1;
+        for (char letter: source.toCharArray()) {
+            if (!targetIndicesMap.containsKey(letter)) return false;
+
+            boolean isMatched = false;
+            for (Integer targetIndex : targetIndicesMap.get(letter)) {
+                if (matchIndex < targetIndex) {
+                    matchIndex = targetIndex;
+                    isMatched = true;
+                    break;
+                }
+            }
+
+            if (!isMatched) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         IsSubSequence isSubSequenceObj = new IsSubSequence();
         System.out.println(isSubSequenceObj.isSubsequenceRec("abc", "ahbgdc"));
@@ -47,5 +84,8 @@ public class IsSubSequence {
 
         System.out.println(isSubSequenceObj.isSubsequenceItr("abc", "ahbgdc"));
         System.out.println(isSubSequenceObj.isSubsequenceItr("axc", "ahbgdcd"));
+
+        System.out.println(isSubSequenceObj.isSubsequenceWithMap("abc", "ahbgdc"));
+        System.out.println(isSubSequenceObj.isSubsequenceWithMap("axc", "ahbgdcd"));
     }
 }
