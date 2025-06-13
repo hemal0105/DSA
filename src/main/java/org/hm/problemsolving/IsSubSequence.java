@@ -58,7 +58,7 @@ public class IsSubSequence {
         }
 
         int matchIndex = -1;
-        for (char letter: source.toCharArray()) {
+        for (char letter : source.toCharArray()) {
             if (!targetIndicesMap.containsKey(letter)) return false;
 
             boolean isMatched = false;
@@ -77,6 +77,26 @@ public class IsSubSequence {
         return true;
     }
 
+    private boolean isSubsequenceDp(String source, String target) {
+        int sourceLen = source.length(), targetLen = target.length();
+        if (sourceLen == 0) return true;
+
+        int[][] dp = new int[sourceLen + 1][targetLen + 1];
+        for (int col = 1; col <= targetLen; col++) {
+            for (int row = 1; row <= sourceLen; row++) {
+                if (source.charAt(row - 1) == target.charAt(col - 1)) {
+                    dp[row][col] = dp[row - 1][col - 1] + 1;
+                } else {
+                    dp[row][col] = Math.max(dp[row][col-1], dp[row-1][col]);
+                }
+            }
+
+            if (dp[sourceLen][col] == sourceLen) return true;
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         IsSubSequence isSubSequenceObj = new IsSubSequence();
         System.out.println(isSubSequenceObj.isSubsequenceRec("abc", "ahbgdc"));
@@ -87,5 +107,8 @@ public class IsSubSequence {
 
         System.out.println(isSubSequenceObj.isSubsequenceWithMap("abc", "ahbgdc"));
         System.out.println(isSubSequenceObj.isSubsequenceWithMap("axc", "ahbgdcd"));
+
+        System.out.println(isSubSequenceObj.isSubsequenceDp("abc", "ahbgdc"));
+        System.out.println(isSubSequenceObj.isSubsequenceDp("axc", "ahbgdcd"));
     }
 }
