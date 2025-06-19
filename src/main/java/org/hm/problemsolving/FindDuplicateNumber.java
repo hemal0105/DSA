@@ -44,22 +44,39 @@ public class FindDuplicateNumber {
         return duplicate;
     }
 
+
+    private static int store(int[] nums, int cur) {
+        if (cur == nums[cur]) {
+            return cur;
+        }
+        int next = nums[cur];
+        nums[cur] = cur;
+        return store(nums, next);
+    }
+    // Array modified
+    private static int findDuplicate4(int[] nums) {
+        return store(nums, 0);
+    }
+
     public static void main(String[] args) {
         int[] nums1 = {1, 3, 4, 2, 2};
         System.out.println(findDuplicate1(nums1));
         System.out.println(findDuplicate2(nums1));
         System.out.println(findDuplicate3(nums1));
+        System.out.println(findDuplicate4(nums1));
 
         System.out.println();
         int[] nums2 = {3, 1, 3, 4, 2};
         System.out.println(findDuplicate1(nums2));
         System.out.println(findDuplicate2(nums2));
         System.out.println(findDuplicate3(nums2));
+        System.out.println(findDuplicate4(nums2));
 
         System.out.println();
         int[] nums3 = {3, 3, 3, 3, 3};
         System.out.println(findDuplicate1(nums3));
         System.out.println(findDuplicate2(nums3));
         System.out.println(findDuplicate3(nums3));
+        System.out.println(findDuplicate4(nums3));
     }
 }
