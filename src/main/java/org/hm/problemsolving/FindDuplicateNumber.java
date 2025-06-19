@@ -53,9 +53,21 @@ public class FindDuplicateNumber {
         nums[cur] = cur;
         return store(nums, next);
     }
+
     // Array modified
     private static int findDuplicate4(int[] nums) {
-        return store(nums, 0);
+        int[] newNums = Arrays.copyOf(nums, nums.length);
+        return store(newNums, 0);
+    }
+
+    // Array modified
+    private static int findDuplicate5(int[] nums) {
+        while (nums[0] != nums[nums[0]]) {
+            int next = nums[nums[0]];
+            nums[nums[0]] = nums[0];
+            nums[0] = next;
+        }
+        return nums[0];
     }
 
     public static void main(String[] args) {
@@ -64,6 +76,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate2(nums1));
         System.out.println(findDuplicate3(nums1));
         System.out.println(findDuplicate4(nums1));
+        System.out.println(findDuplicate5(nums1));
 
         System.out.println();
         int[] nums2 = {3, 1, 3, 4, 2};
@@ -71,6 +84,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate2(nums2));
         System.out.println(findDuplicate3(nums2));
         System.out.println(findDuplicate4(nums2));
+        System.out.println(findDuplicate5(nums2));
 
         System.out.println();
         int[] nums3 = {3, 3, 3, 3, 3};
@@ -78,5 +92,6 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate2(nums3));
         System.out.println(findDuplicate3(nums3));
         System.out.println(findDuplicate4(nums3));
+        System.out.println(findDuplicate5(nums3));
     }
 }
