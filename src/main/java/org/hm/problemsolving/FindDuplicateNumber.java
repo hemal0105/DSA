@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *  <a href="https://leetcode.com/problems/find-the-duplicate-number/description/">...</a>
+ */
 public class FindDuplicateNumber {
 
     // Array modified
