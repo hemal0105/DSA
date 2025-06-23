@@ -61,7 +61,9 @@ public class FindDuplicateNumber {
     }
 
     // Array modified
-    private static int findDuplicate5(int[] nums) {
+    private static int findDuplicate5(int[] ogNums) {
+        int[] nums = Arrays.copyOf(ogNums, ogNums.length);
+
         while (nums[0] != nums[nums[0]]) {
             int next = nums[nums[0]];
             nums[nums[0]] = nums[0];
@@ -70,6 +72,33 @@ public class FindDuplicateNumber {
         return nums[0];
     }
 
+    // Binary search - O(n log n)
+    private static int findDuplicate6(int[] nums) {
+        int low = 1, high = nums.length -1;
+        int duplicate = -1;
+
+        while(low <= high) {
+            int curr = (low + high) / 2;
+
+            int count = 0;
+            for (int num: nums) {
+                if (num <= curr) {
+                    count++;
+                }
+            }
+
+            if (count > curr) {
+                duplicate = curr;
+                high = curr - 1;
+            } else {
+                low = curr + 1;
+            }
+        }
+
+        return duplicate;
+    }
+
+
     public static void main(String[] args) {
         int[] nums1 = {1, 3, 4, 2, 2};
         System.out.println(findDuplicate1(nums1));
@@ -77,6 +106,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate3(nums1));
         System.out.println(findDuplicate4(nums1));
         System.out.println(findDuplicate5(nums1));
+        System.out.println(findDuplicate6(nums1));
 
         System.out.println();
         int[] nums2 = {3, 1, 3, 4, 2};
@@ -85,6 +115,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate3(nums2));
         System.out.println(findDuplicate4(nums2));
         System.out.println(findDuplicate5(nums2));
+        System.out.println(findDuplicate6(nums2));
 
         System.out.println();
         int[] nums3 = {3, 3, 3, 3, 3};
@@ -93,5 +124,6 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate3(nums3));
         System.out.println(findDuplicate4(nums3));
         System.out.println(findDuplicate5(nums3));
+        System.out.println(findDuplicate6(nums3));
     }
 }
