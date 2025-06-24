@@ -144,6 +144,26 @@ public class FindDuplicateNumber {
         return duplicate;
     }
 
+    // Two pointer approach - Time O (n), Space O (1)
+    private static int findDuplicate8(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+
+        do {
+            slow = nums[slow];
+            fast = nums[fast];
+        } while (slow != fast);
+
+        slow = nums[0];
+
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return fast;
+    }
+
 
     public static void main(String[] args) {
         int[] nums1 = {1, 3, 4, 2, 2};
@@ -154,6 +174,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate5(nums1));
         System.out.println(findDuplicate6(nums1));
         System.out.println(findDuplicate7(nums1));
+        System.out.println(findDuplicate8(nums1));
 
         System.out.println();
         int[] nums2 = {3, 1, 3, 4, 2};
@@ -164,6 +185,7 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate5(nums2));
         System.out.println(findDuplicate6(nums2));
         System.out.println(findDuplicate7(nums2));
+        System.out.println(findDuplicate8(nums2));
 
         System.out.println();
         int[] nums3 = {3, 3, 3, 3, 3};
@@ -174,5 +196,6 @@ public class FindDuplicateNumber {
         System.out.println(findDuplicate5(nums3));
         System.out.println(findDuplicate6(nums3));
         System.out.println(findDuplicate7(nums3));
+        System.out.println(findDuplicate8(nums3));
     }
 }
