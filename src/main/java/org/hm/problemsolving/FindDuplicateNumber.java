@@ -117,7 +117,7 @@ public class FindDuplicateNumber {
         return bits;
     }
 
-    // Bit manipulations with constant space and O(n)
+    // Bit manipulations with constant space and time O(n log n)
     private static int findDuplicate7(int[] nums) {
         int maxNum = findMax(nums);
         int maxBits = maxBits(maxNum);
