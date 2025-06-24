@@ -151,7 +151,7 @@ public class FindDuplicateNumber {
 
         do {
             slow = nums[slow];
-            fast = nums[fast];
+            fast = nums[nums[fast]];
         } while (slow != fast);
 
         slow = nums[0];
