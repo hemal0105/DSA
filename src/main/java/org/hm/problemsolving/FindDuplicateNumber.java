@@ -104,7 +104,7 @@ public class FindDuplicateNumber {
 
     private static int findMax(int[] nums) {
         int maxNum = 0;
-        for (int i = 0; i < nums.length; i++) maxNum = Math.max(maxNum, nums[i]);
+        for (int num : nums) maxNum = Math.max(maxNum, num);
         return maxNum;
     }
 
