@@ -59,6 +59,7 @@ public class FindAllDuplicates {
         nums[idx2] = temp;
     }
 
+    // Time O(n) Space O(n)
     private static List<Integer> findDuplicates4(int[] nums) {
         int n = nums.length;
 
