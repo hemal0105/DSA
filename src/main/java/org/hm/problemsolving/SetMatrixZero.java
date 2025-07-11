@@ -6,7 +6,8 @@ import java.util.Set;
 
 public class SetMatrixZero {
 
-    private static void setZeroes(int[][] matrix) {
+    // Uses additional Memory
+    private static void setZeroes1(int[][] matrix) {
         int rowLen = matrix.length;
         int colLen = matrix[0].length;
 
@@ -32,6 +33,7 @@ public class SetMatrixZero {
 
     }
 
+    // Uses array's first row/column elements as indicators
     private static void setZeroes2(int[][] matrix) {
         boolean isFirstCol = false;
 
@@ -68,7 +70,7 @@ public class SetMatrixZero {
 
     public static void main(String[] args) {
         int[][] matrix1 = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
-        setZeroes(matrix1);
+        setZeroes1(matrix1);
         System.out.println(Arrays.deepToString(matrix1));
 
         int[][] matrix2 = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
