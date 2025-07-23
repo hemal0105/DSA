@@ -25,12 +25,14 @@ public class RotateImage {
     }
 
     public static void rotate2(int[][] matrix) {
+        // Transpose + Reverse/Reflect = Rotate
         transpose(matrix);
         reflect(matrix);
         System.out.println(Arrays.deepToString(matrix));
     }
 
     private static void transpose(int[][] matrix) {
+        // Swapping elements opposite of digonal
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
@@ -42,6 +44,7 @@ public class RotateImage {
     }
 
     private static void reflect(int[][] matrix) {
+        // Row wise swapping elements opposite of middle column
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
